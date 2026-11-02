@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod4
+spec:
+  nodeSelector:
+    disk: ssd
+  containers:
+  - image: nginx:latest
+    imagePullPolicy: Always
+    name: nginx-container
+    ports:
+    - containerPort: 80
+      protocol: TCP
