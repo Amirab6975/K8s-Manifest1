@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello
+spec:
+  #completions: 1
+  #parallelism: 1
+  template:
+    metadata:
+      labels:
+        app: item
+    spec:
+      containers:
+      - name: hello
+        image: busybox:1.28
+        imagePullPolicy: IfNotPresent
+        command:
+        - /bin/bash
+        - -c
+        - data; echo hello from K8s Cluster
+      restartPolicy: OnFailure
+  
