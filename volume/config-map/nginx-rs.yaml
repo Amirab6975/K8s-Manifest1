@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+  namespace: aboli
+spec:
+  replicas: 3
+  selector:
+    # matchLabels:
+    #   app: item
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - item  
+  template:
+    metadata:
+      labels:
+        app: item
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        # command: ["sh", "-c"]
+        #args: ["echo hello && nginx -g 'daemon off;'"]
+        env:
+          #- name: TEST
+          #  value: "Aboli"
+          #- name: TEST2
+          #  value:  "ABC"
+          #- name: Test3
+          #  value:  "$(TEST) - $(TEST2)"
+          #- name: TEST
+          #  valueFrom:
+          #    configMapKeyRef:
+          #      name: nginx-config
+          #      key:  port
+          #envFrom:
+          #- prefix: CONFIG_
+          #  configMapRef: 
+          #    name: nginx-config
+        volumeMounts:
+        - name: config
+          mountPath:  /etc/nginx/conf.d/
+            #subPath: nginx-config.conf
+          readOnly: true
+          # defaultMode: "6600"
+        - name: certs
+          mountPath:  /etc/nginx/certs/
+          readOnly: true
+        ports:
+        - containerPort: 80
+          name: http
+      volumes:
+      - name: config
+        configMap:
+          name: nginx-config
+      - name: certs
+        secret:
+          secretName: nginx-https
