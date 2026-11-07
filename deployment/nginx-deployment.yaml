@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: aboli
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge:  3
+      maxUnavailable: 2
+    type: RollingUpdate
+  minReadySeconds:  10
+  replicas: 6
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - item  
+  template:
+    metadata:
+      labels:
+        app: item
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.27.2
+        ports:
+          - containerPort: 80
+            name: http
+          - containerPort: 443
+            name: https
