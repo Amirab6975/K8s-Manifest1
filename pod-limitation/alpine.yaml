@@ -5,9 +5,12 @@ metadata:
   namespace: aboli
 spec:
   #hostNetwork: true
-  hostPID: true
-  hostIPC: true
+  #hostPID: true
+  #hostIPC: true
   containers:
   - name: main
     image: alpine
     command:  ["/bin/sleep","999999"]
+    securityContext:
+      runAsUser: 405
+      runAsNonRoot: true
