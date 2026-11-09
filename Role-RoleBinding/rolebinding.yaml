@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  creationTimestamp: "2026-11-09T05:10:33Z"
+  name: srb
+  namespace: aboli
+  resourceVersion: "378165"
+  uid: 95b0d90a-1448-44b2-9753-662bbc1ca75d
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: service-reader
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: aboli
+- kind: ServiceAccount
+  name: default
+  namespace: aboli2
