@@ -4,9 +4,10 @@ metadata:
   name: curl-test
   namespace: aboli
 spec:
-  serviceAccountName: aboli-sa 
   containers:
   - name: test
     image: curlimages/curl
     command:  ["/bin/sh", "-ec", "while :; do echo '.' ; sleep 5 ; done"]
-
+  - name: proxy
+    image:  luksa/kubectl-proxy:1.8.0
+    imagePullPolicy: IfNotPresent
