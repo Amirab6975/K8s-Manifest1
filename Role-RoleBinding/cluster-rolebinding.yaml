@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: srb
+  namespace: aboli
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pv-reader
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: aboli
