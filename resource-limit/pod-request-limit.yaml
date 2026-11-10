@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-limit
+  namespace: aboli
+spec:
+  containers:
+  - name: main
+    image: busybox
+    command: ["dd", "if=/dev/zero", "of=/dev/null"]
+    resources:  
+      requests:
+        cpu: 200m
+        memory: 10Mi
+      limit:
+        cpu: 500m
+        memory: 15Mi
