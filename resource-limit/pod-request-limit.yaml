@@ -9,9 +9,9 @@ spec:
     image: busybox
     command: ["dd", "if=/dev/zero", "of=/dev/null"]
     resources:  
-      requests:
-        cpu: 500m
-        memory: 10Mi
-      limits:
-        cpu: 1
-        memory: 20Mi
+        requests:
+          cpu: 200m
+          memory: 10Mi
+        limits:
+          cpu: 300m
+          memory: 20Mi
