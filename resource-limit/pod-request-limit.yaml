@@ -10,8 +10,8 @@ spec:
     command: ["dd", "if=/dev/zero", "of=/dev/null"]
     resources:  
       requests:
-        cpu: 200m
-        memory: 10Mi
-      limit:
         cpu: 500m
-        memory: 15Mi
+        memory: 10Mi
+      limits:
+        cpu: 1
+        memory: 20Mi
